@@ -12,16 +12,16 @@ It runs the server on localhost:8081
 go run main.go
 ```
 
-##Client
-###GetUserbyId
+## Client
+### GetUserbyId
 
 ```bash
 go run client/client.go
 ```
 
 
-##Client
-###GetUserbyId
+## Client
+### GetUserbyId
 
 ```bash
 go run client2/clientGetUser.go
