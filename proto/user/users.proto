@@ -13,7 +13,7 @@ message User {
     required string firstName = 2;
     required string city = 3;
     required string phone = 4;
-    required float height = 5;
+    required string height = 5;
     required bool married = 6;
 }
 

@@ -1,6 +1,7 @@
 package store
 
 import (
+	"github.com/ishank838/go-users-grpc/helper"
 	users "github.com/ishank838/go-users-grpc/proto/user"
 )
 
@@ -31,7 +32,7 @@ func InituserData() {
 
 	for i, _ := range data {
 		UserDb = append(UserDb, users.User{Id: &data[i].id,
-			FirstName: &data[i].firstname, City: &data[i].city, Phone: &data[i].phone, Height: &data[i].height,
+			FirstName: &data[i].firstname, City: &data[i].city, Phone: &data[i].phone, Height: helper.GetFormattedHeight(data[i].height),
 			Married: &data[i].married,
 		})
 	}
