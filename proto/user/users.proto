@@ -1,0 +1,30 @@
+syntax="proto3";
+
+package users;
+
+// users service contains methods on users like getUser and getAllusers
+service Users {
+    rpc getUser(UserId) returns(User) {};
+    rpc getAllUsers(Void) returns(UserList){};
+}
+
+message User {
+    int64 id = 1;
+    string firstName = 2;
+    string city = 3;
+    string phone = 4;
+    float height = 5;
+    bool married = 6;
+}
+
+message UserId {
+    int64 userId = 1;
+}
+
+message Void {
+}
+
+// User list contains a list of users
+message UserList {
+    repeated User UserList = 1;
+}
