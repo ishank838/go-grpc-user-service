@@ -1,9 +1,9 @@
 # go-grpc-user-service
 
-A users grpc service for users
-It has two methods
-GetUser :- Get user details by providing concerned userId
-GetAllUser :- Get details of All users.
+A users grpc service for users._
+It has two methods_
+GetUser :- Get user details by providing concerned userId._
+GetAllUser :- Get details of All users._
 
 ## Server Setup
 It runs the server on localhost:8081
