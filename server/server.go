@@ -7,6 +7,7 @@ import (
 	"github.com/ishank838/go-users-grpc/config"
 	userService "github.com/ishank838/go-users-grpc/proto/user"
 	users "github.com/ishank838/go-users-grpc/services/users"
+	"github.com/ishank838/go-users-grpc/services/users/store"
 	"google.golang.org/grpc"
 )
 
@@ -21,6 +22,7 @@ func SetupServer(app *config.Application, srv *grpc.Server) net.Listener {
 			err)
 	}
 
+	store.InituserData()
 	return l
 }
 

@@ -2,36 +2,40 @@ package users
 
 import (
 	"context"
-	"log"
 
-	users "github.com/ishank838/go-users-grpc/proto/user"
+	user "github.com/ishank838/go-users-grpc/proto/user"
 	store "github.com/ishank838/go-users-grpc/services/users/store"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
 type UserService struct {
-	users.UnimplementedUsersServer
+	user.UnimplementedUsersServer
 }
 
-func (s *UserService) GetUser(ctx context.Context, userId *users.UserId) (*users.User, error) {
-	log.Println(userId)
+func (s *UserService) GetUser(ctx context.Context, userId *user.UserId) (*user.User, error) {
 	if userId == nil {
-		return nil, status.Error(codes.InvalidArgument, "userId cann't be empty")
+		return nil, status.Errorf(codes.InvalidArgument, "userId cann't be empty")
 	}
 
-	user := store.GetUserById(userId.UserId)
-	log.Println(user.Married)
+	user := store.GetUserById(*userId.UserId)
 	if user == nil {
-		return nil, status.Error(codes.InvalidArgument, "invalid userId")
+		return nil, status.Errorf(codes.InvalidArgument, "invalid userId")
 	}
 	return user, nil
 }
 
-func (s *UserService) GetAllUsers(ctx context.Context, void *users.Void) (*users.UserList, error) {
-	/*users := store.GetAllUsers()
-	log.Println(users)
-	list := *[]users.UserList{}
-	return nil, nil*/
-	return nil, status.Error(codes.InvalidArgument, "api getAllUsers called") //errors.New("api getAllUsers called")
+func (s *UserService) GetAllUsers(ctx context.Context, void *user.Void) (*user.UserList, error) {
+	users := store.GetAllUsers()
+	if users == nil {
+		return nil, status.Errorf(codes.Internal, "unable to get user list")
+	}
+
+	list := user.UserList{}
+
+	for i, _ := range users {
+		list.AllUser = append(list.AllUser, &users[i])
+	}
+
+	return &list, nil
 }

@@ -1,4 +1,4 @@
-syntax="proto3";
+syntax="proto2";
 
 package users;
 
@@ -9,16 +9,16 @@ service Users {
 }
 
 message User {
-    int64 id = 1;
-    string firstName = 2;
-    string city = 3;
-    string phone = 4;
-    float height = 5;
-    bool married = 6;
+    required int64 id = 1;
+    required string firstName = 2;
+    required string city = 3;
+    required string phone = 4;
+    required float height = 5;
+    required bool married = 6;
 }
 
 message UserId {
-    int64 userId = 1;
+    required int64 userId = 1;
 }
 
 message Void {
@@ -26,5 +26,5 @@ message Void {
 
 // User list contains a list of users
 message UserList {
-    repeated User UserList = 1;
+    repeated User AllUser = 1;
 }
