@@ -6,10 +6,11 @@ import (
 
 	user "github.com/ishank838/go-users-grpc/proto/user"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 func main() {
-	conn, err := grpc.Dial(":8081", grpc.WithInsecure())
+	conn, err := grpc.Dial(":8081", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Panic(err)
 	}
